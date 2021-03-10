@@ -29,8 +29,8 @@ BuildRequires:  zlib-devel
 BuildRequires:  pkgconfig
 BuildRequires:  python2-devel
 BuildRequires:  python2-numpy
-BuildRequires:  python34-devel
-BuildRequires:  python34-numpy
+BuildRequires:  python36-devel
+BuildRequires:  python36-numpy
 BuildRequires:  pylint
 BuildRequires:  swig
 BuildRequires:  libgphoto2-devel
@@ -98,12 +98,12 @@ Requires:       python2-numpy
 This package contains Python2 bindings for the OpenCV library.
 
 
-%package        -n python34-opencv
+%package        -n python36-opencv
 Summary:        Python3 bindings for apps which use OpenCV
 Requires:       opencv%{_isa} = %{version}-%{release}
-Requires:       python34-numpy
+Requires:       python36-numpy
 
-%description    -n python34-opencv
+%description    -n python36-opencv
 This package contains Python3 bindings for the OpenCV library.
 
 
@@ -130,7 +130,7 @@ cmake3 CMAKE_VERBOSE=1 \
  -DWITH_QT=ON \
  -DWITH_OPENGL=ON \
  -DOpenGL_GL_PREFERENCE=GLVND \
- -DWITH_GDAL=ON \
+ -DWITH_GDAL=OFF \
  -DWITH_UNICAP=ON \
  -DCMAKE_SKIP_RPATH=ON \
  -DWITH_CAROTENE=OFF \
@@ -148,7 +148,7 @@ cmake3 CMAKE_VERBOSE=1 \
  -DBUILD_PROTOBUF=OFF \
  -DPROTOBUF_UPDATE_FILES=ON \
  -DOPENCV_SKIP_PYTHON_LOADER=ON \
- -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-4.0.1/modules \
+ -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-%{VERSION}/modules \
  -DWITH_LIBV4L=ON \
  -DWITH_OPENMP=ON \
  -DBUILD_opencv_cudacodec=OFF \
@@ -228,8 +228,8 @@ ldconfig
 %files doc
 %{_datadir}/opencv4/
 
-%files -n python34-opencv
-/usr/lib/python3.4/site-packages/cv2.cpython-3*.so
+%files -n python36-opencv
+/usr/lib/python3.6/site-packages/cv2.cpython-3*.so
 
 %files -n python2-opencv
 /usr/lib/python2.7/site-packages/cv2.so
@@ -256,6 +256,7 @@ ldconfig
 %{_libdir}/libopencv_optflow.so.*
 %{_libdir}/libopencv_phase_unwrapping.so.*
 %{_libdir}/libopencv_plot.so.*
+%{_libdir}/libopencv_quality.so.*
 %{_libdir}/libopencv_reg.so.*
 %{_libdir}/libopencv_rgbd.so.*
 %{_libdir}/libopencv_saliency.so.*
