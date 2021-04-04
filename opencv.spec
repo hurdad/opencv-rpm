@@ -1,3 +1,4 @@
+%global debug_package %{nil}
 Name:           opencv
 Version:        %{VERSION}
 Release:        %{RELEASE}%{?dist}
@@ -23,14 +24,8 @@ BuildRequires:  libpng-devel
 BuildRequires:  libtiff-devel
 BuildRequires:  libGL-devel
 BuildRequires:  libv4l-devel
-BuildRequires:  gtkglext-devel
 BuildRequires:  OpenEXR-devel
 BuildRequires:  zlib-devel
-BuildRequires:  pkgconfig
-BuildRequires:  python2-devel
-BuildRequires:  python2-numpy
-BuildRequires:  python36-devel
-BuildRequires:  python36-numpy
 BuildRequires:  pylint
 BuildRequires:  swig
 BuildRequires:  libgphoto2-devel
@@ -89,23 +84,6 @@ Obsoletes:      %{name}-devel-docs < %{version}-%{release}
 %description    doc
 This package contains the OpenCV documentation, samples and examples programs.
 
-%package        -n python2-opencv
-Summary:        Python2 bindings for apps which use OpenCV
-Requires:       opencv%{_isa} = %{version}-%{release}
-Requires:       python2-numpy
-
-%description    -n python2-opencv
-This package contains Python2 bindings for the OpenCV library.
-
-
-%package        -n python36-opencv
-Summary:        Python3 bindings for apps which use OpenCV
-Requires:       opencv%{_isa} = %{version}-%{release}
-Requires:       python36-numpy
-
-%description    -n python36-opencv
-This package contains Python3 bindings for the OpenCV library.
-
 
 %package        contrib
 Summary:        OpenCV contributed functionality
@@ -125,9 +103,12 @@ mkdir -p build
 pushd build
 
 cmake3 CMAKE_VERBOSE=1 \
+  -DBUILD_TESTS=OFF \
+  -DBUILD_PERF_TESTS=OFF \
+  -DBUILD_EXAMPLES=OFF \
  -DWITH_IPP=OFF \
  -DWITH_ITT=OFF \
- -DWITH_QT=ON \
+ -DWITH_QT=OFF \
  -DWITH_OPENGL=ON \
  -DOpenGL_GL_PREFERENCE=GLVND \
  -DWITH_GDAL=OFF \
@@ -138,10 +119,11 @@ cmake3 CMAKE_VERBOSE=1 \
  -DCMAKE_BUILD_TYPE=RELEASE \
  -DBUILD_opencv_java=OFF \
  -DWITH_CUDA=ON \
+ -DCUDA_ARCH_BIN=6.1 \
  -DCUDA_VERBOSE_BUILD=ON \
  -DCUDA_PROPAGATE_HOST_FLAGS=OFF \
  -DBUILD_DOCS=ON \
- -DBUILD_EXAMPLES=ON \
+ -DBUILD_EXAMPLES=OFF \
  -DINSTALL_C_EXAMPLES=ON \
  -DINSTALL_PYTHON_EXAMPLES=ON \
  -DENABLE_PYLINT=ON \
@@ -203,7 +185,7 @@ ldconfig
 
 %files core
 %{_libdir}/libopencv_core.so.*
-%{_libdir}/libopencv_cvv.so.*
+#%{_libdir}/libopencv_cvv.so.*
 %{_libdir}/libopencv_features2d.so.*
 %{_libdir}/libopencv_flann.so.*
 %{_libdir}/libopencv_hfs.so.*
@@ -228,11 +210,6 @@ ldconfig
 %files doc
 %{_datadir}/opencv4/
 
-%files -n python36-opencv
-/usr/lib/python3.6/site-packages/cv2.cpython-3*.so
-
-%files -n python2-opencv
-/usr/lib/python2.7/site-packages/cv2.so
 
 %files contrib
 %{_libdir}/libopencv_aruco.so.*
