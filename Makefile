@@ -1,5 +1,5 @@
 # opencv	 
-version = 4.1.0
+version = 4.5.2
 release = 1
 name = opencv
 full_name = $(name)-$(version)

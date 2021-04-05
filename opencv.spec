@@ -32,12 +32,10 @@ BuildRequires:  libgphoto2-devel
 BuildRequires:  libwebp-devel
 BuildRequires:  tesseract-devel
 BuildRequires:  protobuf-devel
-BuildRequires:  gdal-devel
 BuildRequires:  glog-devel
 BuildRequires:  doxygen
 BuildRequires:  gflags-devel
 BuildRequires:  libucil-devel
-BuildRequires:  qt5-qtbase-devel
 BuildRequires:  mesa-libGL-devel
 BuildRequires:  mesa-libGLU-devel
 BuildRequires:  hdf5-devel
@@ -103,9 +101,9 @@ mkdir -p build
 pushd build
 
 cmake3 CMAKE_VERBOSE=1 \
-  -DBUILD_TESTS=OFF \
-  -DBUILD_PERF_TESTS=OFF \
-  -DBUILD_EXAMPLES=OFF \
+ -DBUILD_TESTS=OFF \
+ -DBUILD_PERF_TESTS=OFF \
+ -DBUILD_EXAMPLES=OFF \
  -DWITH_IPP=OFF \
  -DWITH_ITT=OFF \
  -DWITH_QT=OFF \
@@ -185,7 +183,6 @@ ldconfig
 
 %files core
 %{_libdir}/libopencv_core.so.*
-#%{_libdir}/libopencv_cvv.so.*
 %{_libdir}/libopencv_features2d.so.*
 %{_libdir}/libopencv_flann.so.*
 %{_libdir}/libopencv_hfs.so.*
@@ -210,8 +207,8 @@ ldconfig
 %files doc
 %{_datadir}/opencv4/
 
-
 %files contrib
+%{_libdir}/libopencv_alphamat.so.*
 %{_libdir}/libopencv_aruco.so.*
 %{_libdir}/libopencv_bgsegm.so.*
 %{_libdir}/libopencv_bioinspired.so.*
@@ -221,6 +218,7 @@ ldconfig
 %{_libdir}/libopencv_cudev.so.*
 %{_libdir}/libopencv_datasets.so.*
 %{_libdir}/libopencv_dnn.so.*
+%{_libdir}/libopencv_dnn_superres.so.*
 %{_libdir}/libopencv_dnn_objdetect.so.*
 %{_libdir}/libopencv_dpm.so.*
 %{_libdir}/libopencv_face.so.*
@@ -229,11 +227,14 @@ ldconfig
 %{_libdir}/libopencv_hdf.so.*
 %{_libdir}/libopencv_gapi.so.*
 %{_libdir}/libopencv_img_hash.so.*
+%{_libdir}/libopencv_intensity_transform.so.*
 %{_libdir}/libopencv_line_descriptor.so.*
+%{_libdir}/libopencv_mcc.so.*
 %{_libdir}/libopencv_optflow.so.*
 %{_libdir}/libopencv_phase_unwrapping.so.*
 %{_libdir}/libopencv_plot.so.*
 %{_libdir}/libopencv_quality.so.*
+%{_libdir}/libopencv_rapid.so.*
 %{_libdir}/libopencv_reg.so.*
 %{_libdir}/libopencv_rgbd.so.*
 %{_libdir}/libopencv_saliency.so.*
@@ -243,6 +244,7 @@ ldconfig
 %{_libdir}/libopencv_surface_matching.so.*
 %{_libdir}/libopencv_text.so.*
 %{_libdir}/libopencv_tracking.so.*
+%{_libdir}/libopencv_wechat_qrcode.so.*
 %{_libdir}/libopencv_xfeatures2d.so.*
 %{_libdir}/libopencv_ximgproc.so.*
 %{_libdir}/libopencv_xobjdetect.so.*
