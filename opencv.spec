@@ -14,7 +14,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  libtool
 BuildRequires:  cmake3
 BuildRequires:  chrpath
-BuildRequires:  eigen3-devel
+#BuildRequires:  eigen3-devel
 BuildRequires:  gtk3-devel
 BuildRequires:  libtheora-devel
 BuildRequires:  libvorbis-devel
@@ -24,7 +24,7 @@ BuildRequires:  libpng-devel
 BuildRequires:  libtiff-devel
 BuildRequires:  libGL-devel
 BuildRequires:  libv4l-devel
-BuildRequires:  OpenEXR-devel
+#BuildRequires:  OpenEXR-devel
 BuildRequires:  zlib-devel
 BuildRequires:  pylint
 BuildRequires:  swig
@@ -118,10 +118,12 @@ cmake3 CMAKE_VERBOSE=1 \
  -DBUILD_opencv_java=OFF \
  -DWITH_CUDA=ON \
  -DCUDA_ARCH_BIN=6.1 \
+ -DCUDA_FAST_MATH=ON \
+ -DWITH_CUDNN=ON \
+ -DOPENCV_DNN_CUDA=ON \
  -DCUDA_VERBOSE_BUILD=ON \
  -DCUDA_PROPAGATE_HOST_FLAGS=OFF \
  -DBUILD_DOCS=ON \
- -DBUILD_EXAMPLES=OFF \
  -DINSTALL_C_EXAMPLES=ON \
  -DINSTALL_PYTHON_EXAMPLES=ON \
  -DENABLE_PYLINT=ON \
@@ -133,6 +135,9 @@ cmake3 CMAKE_VERBOSE=1 \
  -DWITH_OPENMP=ON \
  -DBUILD_opencv_cudacodec=OFF \
  -DCMAKE_INSTALL_PREFIX=/usr \
+ -DBUILD_JAVA=OFF \
+ -DBUILD_opencv_python2=OFF \
+ -DBUILD_opencv_python3=OFF \
  ..
 
 %make_build VERBOSE=1
@@ -208,7 +213,7 @@ ldconfig
 %{_datadir}/opencv4/
 
 %files contrib
-%{_libdir}/libopencv_alphamat.so.*
+#%{_libdir}/libopencv_alphamat.so.*
 %{_libdir}/libopencv_aruco.so.*
 %{_libdir}/libopencv_bgsegm.so.*
 %{_libdir}/libopencv_bioinspired.so.*
@@ -238,7 +243,7 @@ ldconfig
 %{_libdir}/libopencv_reg.so.*
 %{_libdir}/libopencv_rgbd.so.*
 %{_libdir}/libopencv_saliency.so.*
-%{_libdir}/libopencv_sfm.so.*
+#%{_libdir}/libopencv_sfm.so.*
 %{_libdir}/libopencv_stereo.so.*
 %{_libdir}/libopencv_structured_light.so.*
 %{_libdir}/libopencv_surface_matching.so.*
@@ -249,7 +254,7 @@ ldconfig
 %{_libdir}/libopencv_ximgproc.so.*
 %{_libdir}/libopencv_xobjdetect.so.*
 %{_libdir}/libopencv_xphoto.so.*
-%{_libdir}/opencv4/3rdparty
+#%{_libdir}/opencv4/3rdparty
 
 %changelog
 
