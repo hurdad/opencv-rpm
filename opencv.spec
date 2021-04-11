@@ -14,7 +14,6 @@ BuildRequires:  gcc-c++
 BuildRequires:  libtool
 BuildRequires:  cmake3
 BuildRequires:  chrpath
-#BuildRequires:  eigen3-devel
 BuildRequires:  gtk3-devel
 BuildRequires:  libtheora-devel
 BuildRequires:  libvorbis-devel
@@ -24,7 +23,6 @@ BuildRequires:  libpng-devel
 BuildRequires:  libtiff-devel
 BuildRequires:  libGL-devel
 BuildRequires:  libv4l-devel
-#BuildRequires:  OpenEXR-devel
 BuildRequires:  zlib-devel
 BuildRequires:  pylint
 BuildRequires:  swig
@@ -115,6 +113,8 @@ cmake3 CMAKE_VERBOSE=1 \
  -DWITH_CAROTENE=OFF \
  -DENABLE_PRECOMPILED_HEADERS=OFF \
  -DCMAKE_BUILD_TYPE=RELEASE \
+ -DCPU_BASELINE=AVX2 \
+ -DCPU_DISPATCH=AVX,AVX2 \
  -DBUILD_opencv_java=OFF \
  -DWITH_CUDA=ON \
  -DCUDA_ARCH_BIN=6.1 \
@@ -213,7 +213,6 @@ ldconfig
 %{_datadir}/opencv4/
 
 %files contrib
-#%{_libdir}/libopencv_alphamat.so.*
 %{_libdir}/libopencv_aruco.so.*
 %{_libdir}/libopencv_bgsegm.so.*
 %{_libdir}/libopencv_bioinspired.so.*
@@ -243,7 +242,6 @@ ldconfig
 %{_libdir}/libopencv_reg.so.*
 %{_libdir}/libopencv_rgbd.so.*
 %{_libdir}/libopencv_saliency.so.*
-#%{_libdir}/libopencv_sfm.so.*
 %{_libdir}/libopencv_stereo.so.*
 %{_libdir}/libopencv_structured_light.so.*
 %{_libdir}/libopencv_surface_matching.so.*
@@ -254,7 +252,6 @@ ldconfig
 %{_libdir}/libopencv_ximgproc.so.*
 %{_libdir}/libopencv_xobjdetect.so.*
 %{_libdir}/libopencv_xphoto.so.*
-#%{_libdir}/opencv4/3rdparty
 
 %changelog
 
